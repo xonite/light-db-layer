@@ -7,7 +7,7 @@ This is definitely not an ORM, and creates almost no overhead.
 You can think of this library as convention wrapper to help organize your code, with helper methods for simple operations.
 
 
-Give power back to your database and learn more about your data to write better code.
+> Give power back to your database and learn more about your data to write better code.
 
 #Installation
 
