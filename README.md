@@ -9,9 +9,9 @@ You can think of this library as convention wrapper to help organize your code, 
 
 > Give power back to your database and learn more about your data to write better code.
 
-#Installation
+# Installation
 
-##Symfony 5
+## Symfony 5
 
 Add this configuration to config/services.yaml
 
@@ -28,8 +28,8 @@ In your env files add
 
     DATABASE_URL=mysql://user:password@server:port/table?serverVersion=8.0&charset=utf8
     
-#Usage
-##Entity example
+# Usage
+## Entity example
     namespace App\Entity;
     
     use App\Entity;
@@ -57,7 +57,7 @@ Formatters will run to transform your data to database manageable format.
 You should not define variables that should be managed by your database, for example id or at least make those private just like on creation timestamp.
 Entity class and repositories will make naming convention transfer to use CamelCase in php and lowercase underscore in database.
 
-##Repository Example
+## Repository Example
 
     class Facility extends Repository
     {
