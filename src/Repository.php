@@ -19,7 +19,7 @@ abstract class Repository
     public function __construct(Connection $db)
     {
         $this->db = $db;
-        $className = $this->getClassName();
+        $className = $this->getClassName($this);
         $this->table = $this->toDbCase($className);
     }
 
@@ -153,7 +153,6 @@ abstract class Repository
 
     public function findFirst(Entity $terms, $insert = false)
     {
-        try {
             $sql = 'SELECT `id` FROM `' . $this->table . '` WHERE ';
             $data = $terms->getArray();
             foreach ($data as $col => $row) {
@@ -167,25 +166,11 @@ abstract class Repository
                 return $id['id'];
             }
             if ($insert) {
-                $inTransaction = $this->db->inTransaction();
-                if (!$inTransaction) {
-                    $this->db->beginTransaction();
-                }
                 $query = $this->prepareInsert($data);
                 $query->execute($data);
-                $id = $this->db->lastInsertId();
-                if (!$inTransaction) {
-                    $this->db->commit();
-                }
-                return $id;
+                return $this->db->lastInsertId();              
             }
             return false;
-        } catch (DBALException $e) {
-            if ($insert) {
-                $this->db->rollBack();
-            }
-            throw $e;
-        }
     }
 
     protected function reduceStatementToArray(Statement $statement, string $key): array
