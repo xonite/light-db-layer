@@ -57,6 +57,12 @@ Formatters will run to transform your data to database manageable format.
 You should not define variables that should be managed by your database, for example id or at least make those private just like on creation timestamp.
 Entity class and repositories will make naming convention transfer to use CamelCase in php and lowercase underscore in database.
 
+Entity have methods for self:
+* insert
+* update
+* delete
+* findId
+
 ## Repository Example
 
     class Facility extends Repository
@@ -73,24 +79,11 @@ Entity class and repositories will make naming convention transfer to use CamelC
     }
 Repository is just place for your queries. It's based on doctrine/dbal for future extendability but it's really nothing more than simple PDO.
 Repository contains helper methods for:
-* insert
-* replace
-* update
-* delete
-* batch inserts
-* batch updates
-* basic id fetching
-* range id fetching
-* fetching all
-* getting enum values
-* morphing enums into select field key array
-* id searching/unique inserts
 * reducer to basic array
 * reducer to id array
 * field value migration
 * unique migration
 * array to query parameter helper
-* table name helper
 
     
       
