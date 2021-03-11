@@ -101,8 +101,7 @@ abstract class Entity
 
     public function getArray(): array
     {
-        $data = get_object_vars($this);
-
+        $data = $this->getPublicVars();
         foreach ($data as $k => $row) {
             //Magic happens here, possibly php bug because it filters out undefined nulls only
             //When comparing with normal null it filters undefined and defined nulls.
@@ -130,6 +129,17 @@ abstract class Entity
             }
         }
         return $translated;
+    }
+
+    private function getPublicVars(): array
+    {
+        $me = new class {
+            function getPublicVars($object)
+            {
+                return get_object_vars($object);
+            }
+        };
+        return $me->getPublicVars($this);
     }
 
     //deprecated

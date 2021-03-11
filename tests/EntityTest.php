@@ -9,6 +9,7 @@ class FakeEntity extends Entity {
     public ?int $id;
     public string $name;
     public \DateTime $date;
+    private $timestamp;
 
     public function dateFormatter(): string
     {
